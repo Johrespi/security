@@ -13,7 +13,11 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', async function(req, res, next) {  
   /* 3. Uso del método findAll */
-  let usersCollection = await models.users.findAll({ })
+  let usersCollection = await models.users.findAll({ 
+    include: { all: true, nested: true },
+    raw: true,
+    nest: true,
+  })
   let rolesCollection = await models.roles.findAll({ })
   /* 4. Paso de parámetros a la vista */
   res.render('crud', { title: 'CRUD of users', usersArray: usersCollection, rolesArray: rolesCollection   });
