@@ -33,8 +33,17 @@ router.post('/login', async function (req, res, next) {
       let userData = await models.users.findOne({
         where: {
           name: username
-        }
+        },
+
+        /*1. Incluya todos los modelos asociados */
+        include: { all: true, nested: true },
+        raw: true,
+        nest: true
+
       })
+
+
+
 
       /* 7. Verifique que userData sea diferente de null, y que userData.password sea diferente de null. */
       if (userData != null && userData.password != null) {
@@ -59,6 +68,9 @@ router.post('/login', async function (req, res, next) {
           res.cookie("username", username, options);
           req.session.loggedin = true;
           req.session.username = username
+
+          /* 2. Agregue el rol del usuario en la sesión */
+          req.session.role = userData.users_roles.roles_idrole_role.name
 
 
           res.redirect('/users');
