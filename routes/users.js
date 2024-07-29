@@ -19,8 +19,10 @@ router.get('/', async function(req, res, next) {
     nest: true,
   })
   let rolesCollection = await models.roles.findAll({ })
+  
   /* 4. Paso de parámetros a la vista */
-  res.render('crud', { title: 'CRUD of users', usersArray: usersCollection, rolesArray: rolesCollection   });
+  res.render('crud', { username: req.cookies['username'], title: 'CRUD of users', usersArray: usersCollection, rolesArray: rolesCollection});
+  //res.render('crud', { title: 'CRUD of users', usersArray: usersCollection, rolesArray: rolesCollection   });
 
 });
 
