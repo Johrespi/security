@@ -12,6 +12,7 @@ const session = require('express-session');
  /* 1. Referencia a los middlewares */
 var authenticateSession = require('./middleware/authentication_session');
 var authorizationSession = require('./middleware/authorization_session');
+var authorizationRolUser = require('./middleware/authorization_rol_user')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -38,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/token', tokenRouter)
+app.use('/token', authenticateSession, authorizationRolUser, tokenRouter)
 
  /* 2. Agregue el middleware al router */
  app.use('/users', authenticateSession, authorizationSession, usersRouter);
