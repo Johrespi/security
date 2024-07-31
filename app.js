@@ -15,6 +15,7 @@ var authorizationSession = require('./middleware/authorization_session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var ticketRouter = require('./routes/ticket')
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/ticket', ticketRouter)
 
  /* 2. Agregue el middleware al router */
  app.use('/users', authenticateSession, authorizationSession, usersRouter);
