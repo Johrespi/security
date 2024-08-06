@@ -18,6 +18,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tokenRouter = require('./routes/token')
 
+const swaggerFile = require('./swagger_output.json')
+const swaggerUi = require('swagger-ui-express')
 var app = express();
 
 // view engine setup
@@ -32,6 +34,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+
+app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

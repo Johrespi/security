@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SECURITY API",
+    "description": "SECURITY API with Authentication and Autorization",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Guarda un registro",
+        "description": "Se guarda un usuario con un rol definido como administrador o usuario",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "idrole": {
+                  "example": "any"
+                }
+              }
+            },
+            "description": "Datos para crear un registro",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Item successfully created"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Login",
+        "description": "Inico de sesion con usuario y contraseña",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            },
+            "description": "Datos para crear un registro",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Logout",
+        "description": "Salir o cerrar sesion del usuario que inicio sesion",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}

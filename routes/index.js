@@ -18,6 +18,19 @@ router.get('/', function (req, res, next) {
 /* 3. Cree el callback asíncrono que responda al método POST */
 router.post('/login', async function (req, res, next) {
 
+  
+   /* 
+     #swagger.tags = ['Security']
+     #swagger.description = 'Inico de sesion con usuario y contraseña'
+     #swagger.summary = 'Login'
+     #swagger.parameters['data'] = {
+         in: 'body',
+         description: 'Datos para crear un registro',
+         required: true,
+     }
+     
+   */
+
   /* 4. Desestructure los elementos en el cuerpo del requerimiento */
   let { username, password } = req.body
 
@@ -98,6 +111,12 @@ router.post('/login', async function (req, res, next) {
 });
 
 router.get('/logout', function (req, res, next) {
+  /* 
+     #swagger.tags = ['Security']
+     #swagger.description = 'Salir o cerrar sesion del usuario que inicio sesion'
+     #swagger.summary = 'Logout'
+     
+   */
   req.session.destroy();
   res.render('index');
 });

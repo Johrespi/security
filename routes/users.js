@@ -54,6 +54,23 @@ router.get('/', async function(req, res, next) {
  /* 2. Cree el callback asíncrono que responda al método POST */
  router.post('/', async (req, res) => {
 
+   /* 
+     #swagger.tags = ['Security']
+     #swagger.description = 'Se guarda un usuario con un rol definido como administrador o usuario'
+     #swagger.summary = 'Guarda un registro'
+     #swagger.parameters['data'] = {
+         in: 'body',
+         description: 'Datos para crear un registro',
+         required: true,
+     }
+     #swagger.responses[201] = {
+         description: 'Item successfully created',
+     }
+     #swagger.responses[400] = {
+         description: 'Bad request',
+     }
+   */
+
   /* 3. Desestructure los elementos en el cuerpo del requerimiento */
   let { name, password, idrole } = req.body;
 
